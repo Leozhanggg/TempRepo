@@ -206,26 +206,6 @@ def gitpush(msg):
     compare_url = msg['compare']
     commit_num = len(msg['commits'])
     timestamp = msg['head_commit']['timestamp']
-    # head_id = msg['head_commit']['id'][:8]
-    # head_msg = msg['head_commit']['message']
-    # title = "【github】{} 提交了 {} 个更新到 {}".format(pusher, num, repository)
-    # first_line = "[branch]: {}".format(branch)
-    # second_line = "[{}]: {}".format(head_id, head_msg)
-    # body = {
-    #     "msg_type": "post",
-    #     "content": {
-    #         "post": {
-    #             "zh_cn": {
-    #                 "title": title,
-    #                 "content": [
-    #                     [{"tag": "text", "text": first_line}],
-    #                     [{"tag": "text", "text": second_line}],
-    #                     [{"tag": "a", "text": "更多>>>", "href": link}]
-    #                 ]
-    #             }
-    #         }
-    #     }
-    # }
 
     content = "**{} 提交了 {} 个更新到 {}**".format(pusher, commit_num, repository)
     update_content = "**分支：{}\t时间：{}**".format(branch, timestamp)
@@ -295,4 +275,3 @@ def gitpush(msg):
 
 if '__main__' == __name__:
     gitpush(msg)
-
