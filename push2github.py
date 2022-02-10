@@ -201,18 +201,16 @@ msg = {
 def gitpush(msg):
     # print(msg)
     repository = msg['repository']['full_name']
-    branch = msg['repository']['default_branch']
+    branch = msg['ref'].split('/')[-1]
     pusher = msg['pusher']['name']
     compare_url = msg['compare']
     commit_num = len(msg['commits'])
     timestamp = msg['head_commit']['timestamp']
     # head_id = msg['head_commit']['id'][:8]
     # head_msg = msg['head_commit']['message']
-    #
     # title = "【github】{} 提交了 {} 个更新到 {}".format(pusher, num, repository)
     # first_line = "[branch]: {}".format(branch)
     # second_line = "[{}]: {}".format(head_id, head_msg)
-    #
     # body = {
     #     "msg_type": "post",
     #     "content": {
@@ -290,7 +288,6 @@ def gitpush(msg):
     print(body)
     headers = {'Content-Type': 'application/json'}
     url = 'https://open.feishu.cn/open-apis/bot/v2/hook/fd8e512f-93d6-4d93-9ad6-f66988fbfdbb'
-
     rr = requests.post(url, headers=headers, data=json.dumps(body))
     print(rr.text)
     return body
